@@ -1,7 +1,7 @@
 import { KPICards } from './KPICards';
 import { SellersTable } from './SellersTable';
 
-import { Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
 
 import Localization from '../../utils/Localization';
 
@@ -19,17 +19,17 @@ export function Dashboard () {
         <KPICards KPIName="PV" KPIData={1.8}></KPICards>
       </div>
 
+      <Divider variant="middle" />
       <Typography variant="h5" className="SubTitle">Mês</Typography>
       <div className="DataCards">
         <KPICards KPIName="Vendas" KPIData={Localization(54672)}></KPICards>
         <KPICards KPIName="TM" KPIData={Localization(124.65)}></KPICards>
         <KPICards KPIName="PV" KPIData={1.5}></KPICards>
       </div>
-      {/*Adicionar divisor*/}
+      <Divider variant="middle" />
 
       <Typography variant="h5" className="SubTitle">Vendedores</Typography>
       <SellersTable />
-      {/*<SellersTable*/}
     </div>
   )
 }

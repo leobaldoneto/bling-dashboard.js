@@ -20,13 +20,20 @@
 
 .DataCards {
   display: inline-block;
+  
   overflow-x: auto;
+  overflow-y: hidden;
+
   justify-content: space-between;
   white-space: nowrap;
   width: 90%;
   height: 150px;
 
   margin-bottom: 15px;
+}
+
+.DataCards::-webkit-scrollbar {
+  display: none;
 }
 
 .Card {
