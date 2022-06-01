@@ -20,8 +20,10 @@
   "homepage": "https://github.com/leobaldoneto/bling-dashboard.js#readme",
   "dependencies": {
     "bling-erp.js": "^0.2.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "http-proxy-middleware": "^2.0.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

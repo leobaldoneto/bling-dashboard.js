@@ -1,27 +1,31 @@
 require('dotenv').config()
 const path = require('path');
 const express = require('express');
-
-const SalesReport = require('./routes/SalesReport.js');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+app.use(cors());
+
+// Proxy da API do Bling
+app.use('/Api/v2', createProxyMiddleware({
+  target: 'https://bling.com.br',
+  secure: true,
+  changeOrigin: true,
+  pathRewrite: (path, req) => {
+    const newPath = path.replace('willbechangedinproxy', process.env.STORE_KEY);
+    console.log(process.env.STORE_KEY);
+    console.log(newPath);
+    return newPath;
+  },
+  logLevel: 'debug',
+}));
+
 // Fazer com que o Node sirva os arquivos do app em React criado
 app.use(express.static(path.resolve(__dirname, '../client/build')));
-
-// Lidar com as solicitações GET feitas à rota /api
-/*app.get("/api/", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});*/
-
-app.get('/api/salesreport', async (req, res) => {
-  const storeData = await SalesReport(process.env.STORE_NAME, process.env.STORE_KEY); //NAO FAZER COMMIT ANTES DE MUDAR
-  console.log(process.env.STORA_NAME);
-  console.log(storeData);
-  res.json(storeData);
-});
 
 app.get('/api/reports/sales/day', async (req, res) => {
   const dayData = {
