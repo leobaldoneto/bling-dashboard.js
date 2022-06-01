@@ -1,0 +1,29 @@
+{
+  "name": "bling-dashboard",
+  "version": "1.0.0",
+  "description": "Um simples dashboard para acompanhar KPIs da sua empresa no Bling ERP.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leobaldoneto/bling-dashboard.js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leobaldoneto/bling-dashboard.js/issues"
+  },
+  "homepage": "https://github.com/leobaldoneto/bling-dashboard.js#readme",
+  "dependencies": {
+    "bling-erp.js": "^0.2.2",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

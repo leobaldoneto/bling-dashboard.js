@@ -1,0 +1,1 @@
+// Retorna as vendas do dia e do dia anterior
