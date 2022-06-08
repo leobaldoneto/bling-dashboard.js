@@ -1,6 +1,5 @@
-'use strict';
-
-const blingerp = require('bling-erp.js')
+// const bling = require('../api/bling')
+import { bling } from '../api/bling';
 const GetDateString = require('../utils/GetDateString.js')
 const Localization = require('../utils/Localization.js')
 const Sale = require('../models/Sale.js')
@@ -11,7 +10,7 @@ const Seller = require('../models/Seller.js')
  *
  */
 
-const SalesReport = async function (storeName, apikey) {
+export const SalesReport = async function () {
   let daySales = 0; // Vendas do dia na loja
   let monthSales = 0; // Vendas no mês na loja
   let salesSum = 0; // somatório das vendas
@@ -20,14 +19,11 @@ const SalesReport = async function (storeName, apikey) {
   let daySalesQuantity = 0; // quantidade de vendas no dia
   let salesArray = [];
   let storeData; //
-  let name = storeName;
   let sellersArray = [];
-
-  var viaunica = new blingerp({ apikey });
 
   // Recupera 31 dias de vendas em um array de objetos do tipo Sale
   try {
-    let salesObject = await viaunica.pedidos.getAll(
+    let salesObject = await bling.pedidos.getAll(
       `idSituacao[9];dataEmissao[${GetDateString(-30)} TO ${GetDateString()}]`,
       1000
     );
@@ -54,13 +50,13 @@ const SalesReport = async function (storeName, apikey) {
   // LOOP - Calcula os somatórios
   for (let sale of salesArray) {
     //Se for venda do mês
-    if (sale.date.split('-')[1] == todayMonthString) {
+    if (sale.date.split('-')[1] === todayMonthString) {
       monthSales += sale.saleValue;
       monthSalesQuantity++;
     }
 
     //Se for venda do dia. Formato ano-mês-dia
-    if (`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}` == sale.date) {
+    if (`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}` === sale.date) {
       daySales += sale.saleValue;
       daySalesQuantity++;
 
@@ -95,15 +91,12 @@ const SalesReport = async function (storeName, apikey) {
 
   //mostra o resultado
   storeData = {
-    monthSales: Localization(monthSales),
-    daySales: Localization(daySales),
-    averageTicket: Localization(averageTicket),
+    monthSales,
+    daySales,
+    averageTicket,
     monthSalesQuantity,
     daySalesQuantity,
     sellersArray,
-    name,
   };
   return storeData;
 }
-
-module.exports = SalesReport

@@ -25,7 +25,7 @@ app.use('/Api/v2', createProxyMiddleware({
 }));
 
 // Fazer com que o Node sirva os arquivos do app em React criado
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+//app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.get('/api/reports/sales/day', async (req, res) => {
   const dayData = {
@@ -107,6 +107,4 @@ app.get('/api/reports/sales/month', async (req, res) => {
   setTimeout(() => {  res.json(monthData); }, 2000);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
