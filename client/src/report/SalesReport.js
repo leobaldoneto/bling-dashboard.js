@@ -1,10 +1,10 @@
 // const bling = require('../api/bling')
 import { bling } from '../api/bling';
 
-import { getDaySales } from '../report/getDaySales';
-import { getMonthSales } from '../report/getMonthSales';
-import { getAverageTicket } from '../report/getAverageTicket';
-import { getProductsPerSale } from '../report/getProductsPerSale';
+import { getDaySales } from './getDaySales';
+import { getMonthSales } from './getMonthSales';
+import { getAverageTicket } from './getAverageTicket';
+import { getProductsPerSale } from './getProductsPerSale';
 import { countProducts } from './countProducts';
 
 const GetDateString = require('../utils/GetDateString.js');
