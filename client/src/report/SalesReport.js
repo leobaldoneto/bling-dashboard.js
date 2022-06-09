@@ -8,8 +8,7 @@ import { getProductsPerSale } from './getProductsPerSale';
 import { countProducts } from './countProducts';
 import { getSalesTotalValue } from './getSalesTotalValue';
 import { getSellersFromSales } from './getSellersFromSales';
-
-const GetDateString = require('../utils/GetDateString.js');
+import { GetDateString } from '../utils/GetDateString';
 
 export const getDashboardData = async () => {
   try {
