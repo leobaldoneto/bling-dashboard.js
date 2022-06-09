@@ -6,6 +6,8 @@ import { getMonthSales } from './getMonthSales';
 import { getAverageTicket } from './getAverageTicket';
 import { getProductsPerSale } from './getProductsPerSale';
 import { countProducts } from './countProducts';
+import { getSalesTotalValue } from './getSalesTotalValue';
+import { getSellersFromSales } from './getSellersFromSales';
 
 const GetDateString = require('../utils/GetDateString.js');
 
@@ -33,22 +35,35 @@ export const getDashboardData = async () => {
     }
     // Day
     const daySalesArray = getDaySales(salesArray);
+    const dayTotalSales = daySalesArray ? getSalesTotalValue(daySalesArray) : 0;
     const dayAverageSales = daySalesArray ? getAverageTicket(daySalesArray) : 0;
     const dayProductsPerSale = daySalesArray ? getProductsPerSale(daySalesArray) : 0;
 
     // Month
     const monthSalesArray = getMonthSales(salesArray);
+    const monthTotalSales = monthSalesArray ? getSalesTotalValue(monthSalesArray) : 0;
     const monthAverageSales = monthSalesArray ? getAverageTicket(monthSalesArray) : 0;
-    const monthProductsPerSale = monthSalesArray ? getProductsPerSale(daySalesArray) : 0;
+    const monthProductsPerSale = monthSalesArray ? getProductsPerSale(monthSalesArray) : 0;
+
+    // Sellers
+    const monthSellersArray = monthSalesArray ? getSellersFromSales(monthSalesArray) : [];
+
+    monthSellersArray.forEach(seller => {
+      seller.totalSales = getSalesTotalValue(seller.sales);
+      seller.averageSales = getAverageTicket(seller.sales);
+      seller.productsPerSale = getProductsPerSale(seller.sales);
+    })
 
     return {
-      daySalesArray,
+      dayTotalSales,
       dayAverageSales,
       dayProductsPerSale,
 
-      monthSalesArray,
+      monthTotalSales,
       monthAverageSales,
       monthProductsPerSale,
+
+      monthSellersArray,
     }
   } catch (error) {
     console.log(error);

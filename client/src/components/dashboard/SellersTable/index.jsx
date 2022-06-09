@@ -17,9 +17,9 @@ export function SellersTable({ sellersArray }) {
           {sellersArray.map(seller => (
             <TableRow key={seller.name}>
               <TableCell component="th" scope="row">{seller.name}</TableCell>
-              <TableCell align="right">{Localization(seller.totalSell)}</TableCell>
-              <TableCell align="right">{Localization(0.01)}</TableCell>
-              <TableCell align="right">{0.1}</TableCell>
+              <TableCell align="right">{Localization(seller.totalSales)}</TableCell>
+              <TableCell align="right">{Localization(seller.averageSales)}</TableCell>
+              <TableCell align="right">{seller.productsPerSale}</TableCell>
             </TableRow>
           ))}
         </TableBody>

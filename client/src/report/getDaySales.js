@@ -6,6 +6,10 @@ export const getDaySales = (salesArray) => {
     const saleDayDateTime = DateTime.fromISO(sale.date, {zone: 'America/Bahia'}).startOf('day');
     return currentDayDateTime.toMillis() === saleDayDateTime.toMillis();
   });
-
-  return daySalesArray;
+  if (daySalesArray.length > 0) {
+    return daySalesArray;
+  } else {
+    return undefined;
+  }
+  
 }
