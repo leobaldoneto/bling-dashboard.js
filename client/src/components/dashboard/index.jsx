@@ -28,7 +28,7 @@ export function Dashboard () {
     <>
       {store ? (
         <div className="DashboardContainer">
-          <Typography variant="h3" color="initial" className="Title">Via Única</Typography>
+          <Typography variant="h3" color="initial" className="Title">${process.env.REACT_APP_STORE_NAME}</Typography>
 
           <Typography variant="h5" className="SubTitle">Dia</Typography>
           <div className="DataCards">
