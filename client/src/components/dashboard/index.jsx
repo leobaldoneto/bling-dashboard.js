@@ -28,26 +28,29 @@ export function Dashboard () {
     <>
       {store ? (
         <div className="DashboardContainer">
-          <Typography variant="h3" color="initial" className="Title">${process.env.REACT_APP_STORE_NAME}</Typography>
+          <Typography variant="h3" color="initial" className="Title">🏢 {process.env.REACT_APP_STORE_NAME}</Typography>
 
-          <Typography variant="h5" className="SubTitle">Dia</Typography>
+          <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>Dia</Typography>
           <div className="DataCards">
-            <KPICards KPIName="Vendas" KPIData={Localization(store.dayTotalSales)}></KPICards>
-            <KPICards KPIName="TM" KPIData={Localization(store.dayAverageSales)}></KPICards>
-            <KPICards KPIName="PV" KPIData={store.dayProductsPerSale}></KPICards>
+            <KPICards KPIName="Vendas" KPIData={Localization(store.dayTotalSales)} toolTipText="Total em vendas."></KPICards>
+            <KPICards KPIName="TM" KPIData={Localization(store.dayAverageSales)} toolTipText="Ticket médio."></KPICards>
+            <KPICards KPIName="Peças" KPIData={store.dayItemsCount} toolTipText="Peças vendidas."></KPICards>
+            <KPICards KPIName="PV" KPIData={store.dayProductsPerSale} toolTipText="Peças por venda."></KPICards>
           </div>
 
+          <SellersTable sellersArray={store.daySellersArray}/>
+
           <Divider variant="middle" />
-          <Typography variant="h5" className="SubTitle">Mês</Typography>
+          <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>Mês</Typography>
           <div className="DataCards">
-            <KPICards KPIName="Vendas" KPIData={Localization(store.monthTotalSales)}></KPICards>
-            <KPICards KPIName="TM" KPIData={Localization(store.monthAverageSales)}></KPICards>
-            <KPICards KPIName="PV" KPIData={store.monthProductsPerSale}></KPICards>
+            <KPICards KPIName="Vendas" KPIData={Localization(store.monthTotalSales)} toolTipText="Total em vendas."></KPICards>
+            <KPICards KPIName="TM" KPIData={Localization(store.monthAverageSales)} toolTipText="Ticket médio."></KPICards>
+            <KPICards KPIName="Peças" KPIData={store.monthItemsCount} toolTipText="Peças vendidas."></KPICards>
+            <KPICards KPIName="PV" KPIData={store.monthProductsPerSale} toolTipText="Vendas"></KPICards>
           </div>
           <Divider variant="middle" />
-
-          <Typography variant="h5" className="SubTitle">Vendedores</Typography>
           <SellersTable sellersArray={store.monthSellersArray}/>
+
         </div>
       ) : (
         <Skeleton variant="rect" width={210} height={118} />

@@ -17,5 +17,6 @@ export const getSellersFromSales = (sales) => {
     seller.name = seller.name.split(' ')[0];
     return seller;
   });
+  
   return sellersArray;
 }

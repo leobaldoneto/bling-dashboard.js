@@ -10,6 +10,7 @@ export function SellersTable({ sellersArray }) {
             <TableCell>Vendedor(a)</TableCell>
             <TableCell align="right">Vendas</TableCell>
             <TableCell align="right">TM</TableCell>
+            <TableCell align="right">Pe</TableCell>
             <TableCell align="right">PV</TableCell>
           </TableRow>
         </TableHead>
@@ -19,6 +20,7 @@ export function SellersTable({ sellersArray }) {
               <TableCell component="th" scope="row">{seller.name}</TableCell>
               <TableCell align="right">{Localization(seller.totalSales)}</TableCell>
               <TableCell align="right">{Localization(seller.averageSales)}</TableCell>
+              <TableCell align="right">{seller.itemsCount}</TableCell>
               <TableCell align="right">{seller.productsPerSale}</TableCell>
             </TableRow>
           ))}
