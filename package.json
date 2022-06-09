@@ -4,7 +4,8 @@
   "description": "Um simples dashboard para acompanhar KPIs da sua empresa no Bling ERP.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
     "build": "cd client && npm install && npm run build"
   },
   "repository": {
