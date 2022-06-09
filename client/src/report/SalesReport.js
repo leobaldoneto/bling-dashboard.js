@@ -65,6 +65,7 @@ export const getDashboardData = async () => {
       seller.productsPerSale = getProductsPerSale(seller.sales);
     });
 
+    daySellersArray.sort((a,b) => b.totalSales - a.totalSales);
     monthSellersArray.sort((a,b) => b.totalSales - a.totalSales);
 
     return {
