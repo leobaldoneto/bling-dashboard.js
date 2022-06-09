@@ -8,6 +8,7 @@ import { Divider, Skeleton, Typography } from '@mui/material';
 import Localization from '../../utils/Localization';
 
 import { getDashboardData } from '../../report/SalesReport';
+import { SalesChart } from './SalesChart';
 
 
 
@@ -51,6 +52,8 @@ export function Dashboard () {
           <Divider variant="middle" />
           <SellersTable sellersArray={store.monthSellersArray}/>
 
+          <Divider variant="middle" />
+          <SalesChart salesArray={store.monthSalesArray}/>
         </div>
       ) : (
         <Skeleton variant="rect" width={210} height={118} />

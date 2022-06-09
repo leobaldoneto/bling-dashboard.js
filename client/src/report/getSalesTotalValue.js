@@ -1,4 +1,4 @@
-export const getSalesTotalValue = (salesArray) => {
+export const getSalesTotalValue = (salesArray = []) => {
   const totalValue = salesArray.reduce( (sum, sale) => {
     return sum + sale.saleValue;
   }, 0)

@@ -69,11 +69,13 @@ export const getDashboardData = async () => {
     monthSellersArray.sort((a,b) => b.totalSales - a.totalSales);
 
     return {
+      daySalesArray,
       dayTotalSales,
       dayAverageSales,
       dayItemsCount,
       dayProductsPerSale,
 
+      monthSalesArray,
       monthTotalSales,
       monthAverageSales,
       monthItemsCount,
