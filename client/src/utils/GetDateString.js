@@ -6,6 +6,6 @@ import { DateTime } from 'luxon';
 export const GetDateString = (daysToWarp = 0) => {
   const date = DateTime.local({ zone: "America/Bahia" });
   const newDate = date.plus({ days: daysToWarp });
-  const dateString = newDate.toFormat('dd/MM/yy');
+  const dateString = newDate.toFormat('dd/MM/yyyy');
   return dateString;
 }
