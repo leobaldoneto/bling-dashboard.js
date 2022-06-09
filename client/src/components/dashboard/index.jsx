@@ -30,7 +30,7 @@ export function Dashboard () {
         <div className="DashboardContainer">
           <Typography variant="h3" color="initial" className="Title">🏢 {process.env.REACT_APP_STORE_NAME}</Typography>
 
-          <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>Dia</Typography>
+          <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Dia</Typography>
           <div className="DataCards">
             <KPICards KPIName="Vendas" KPIData={Localization(store.dayTotalSales)} toolTipText="Total em vendas."></KPICards>
             <KPICards KPIName="TM" KPIData={Localization(store.dayAverageSales)} toolTipText="Ticket médio."></KPICards>
@@ -41,7 +41,7 @@ export function Dashboard () {
           <SellersTable sellersArray={store.daySellersArray}/>
 
           <Divider variant="middle" />
-          <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>Mês</Typography>
+          <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Mês</Typography>
           <div className="DataCards">
             <KPICards KPIName="Vendas" KPIData={Localization(store.monthTotalSales)} toolTipText="Total em vendas."></KPICards>
             <KPICards KPIName="TM" KPIData={Localization(store.monthAverageSales)} toolTipText="Ticket médio."></KPICards>
