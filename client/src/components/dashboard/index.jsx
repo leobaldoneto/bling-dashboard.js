@@ -33,7 +33,8 @@ export function Dashboard () {
 
           <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Dia</Typography>
           <div className="DataCards">
-            <KPICards KPIName="Vendas" KPIData={Localization(store.dayTotalSales)} toolTipText="Total em vendas."></KPICards>
+            <KPICards KPIName="Fat." KPIData={Localization(store.dayTotalSales)} toolTipText="Total em vendas."></KPICards>
+            <KPICards KPIName="Vendas" KPIData={store.daySalesArray.length} toolTipText="Número de vendas."></KPICards>
             <KPICards KPIName="TM" KPIData={Localization(store.dayAverageSales)} toolTipText="Ticket médio."></KPICards>
             <KPICards KPIName="Peças" KPIData={store.dayItemsCount} toolTipText="Peças vendidas."></KPICards>
             <KPICards KPIName="PV" KPIData={store.dayProductsPerSale} toolTipText="Peças por venda."></KPICards>
@@ -44,7 +45,8 @@ export function Dashboard () {
           <Divider variant="middle" />
           <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Mês</Typography>
           <div className="DataCards">
-            <KPICards KPIName="Vendas" KPIData={Localization(store.monthTotalSales)} toolTipText="Total em vendas."></KPICards>
+            <KPICards KPIName="Fat." KPIData={Localization(store.monthTotalSales)} toolTipText="Total em vendas."></KPICards>
+            <KPICards KPIName="Vendas" KPIData={store.monthSalesArray.length} toolTipText="Número de vendas."></KPICards>
             <KPICards KPIName="TM" KPIData={Localization(store.monthAverageSales)} toolTipText="Ticket médio."></KPICards>
             <KPICards KPIName="Peças" KPIData={store.monthItemsCount} toolTipText="Peças vendidas."></KPICards>
             <KPICards KPIName="PV" KPIData={store.monthProductsPerSale} toolTipText="Vendas"></KPICards>
