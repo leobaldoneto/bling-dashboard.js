@@ -45,6 +45,16 @@ export function SalesChart({ salesArray }){
       daysInMonth.push(i+1);
     }
 
+    const meta = process.env.REACT_APP_META;
+    const salesPerDayToSucess = Math.floor(( meta / daysInMonth.length ));
+
+    const averageMetaArray = [];
+    let metaSum = 0;
+    daysInMonth.forEach(() => {
+      averageMetaArray.push( 
+      metaSum += salesPerDayToSucess
+      )});
+
     daysInMonth.reduce((acumulated, day, index) => {
       const dayDateTime = DateTime.local({zone: 'America/Bahia'}).set({ day });
       const daySales = getDaySales(salesArray, dayDateTime.toISODate());
@@ -61,6 +71,12 @@ export function SalesChart({ salesArray }){
           data: acumulatedSalesArray,
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        },
+        {
+          label: 'Meta',
+          data: averageMetaArray,
+          borderColor: 'rgb(0, 102, 204)',
+          backgroundColor: 'rgba(0, 204, 255, 0.5)',
         }
       ],
     }
