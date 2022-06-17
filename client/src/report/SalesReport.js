@@ -36,6 +36,7 @@ export const getDashboardData = async () => {
     // Day
     const daySalesArray = getDaySales(salesArray);
     const dayTotalSales = daySalesArray ? getSalesTotalValue(daySalesArray) : 0;
+    const daySalesCount = daySalesArray ? daySalesArray.length : 0;
     const dayAverageSales = daySalesArray ? getAverageTicket(daySalesArray) : 0;
     const dayItemsCount = daySalesArray ? getItemsCount(daySalesArray) : 0;
     const dayProductsPerSale = daySalesArray ? getProductsPerSale(daySalesArray) : 0;
@@ -43,6 +44,7 @@ export const getDashboardData = async () => {
     // Month
     const monthSalesArray = getMonthSales(salesArray);
     const monthTotalSales = monthSalesArray ? getSalesTotalValue(monthSalesArray) : 0;
+    const monthSalesCount = monthSalesArray ? monthSalesArray.length : 0;
     const monthAverageSales = monthSalesArray ? getAverageTicket(monthSalesArray) : 0;
     const monthItemsCount = monthSalesArray ? getItemsCount(monthSalesArray) : 0;
     const monthProductsPerSale = monthSalesArray ? getProductsPerSale(monthSalesArray) : 0;
@@ -72,12 +74,14 @@ export const getDashboardData = async () => {
     return {
       daySalesArray,
       dayTotalSales,
+      daySalesCount,
       dayAverageSales,
       dayItemsCount,
       dayProductsPerSale,
 
       monthSalesArray,
       monthTotalSales,
+      monthSalesCount,
       monthAverageSales,
       monthItemsCount,
       monthProductsPerSale,
