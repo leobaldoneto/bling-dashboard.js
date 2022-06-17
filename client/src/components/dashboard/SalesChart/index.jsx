@@ -34,28 +34,31 @@ const options = {
   },
 };
 
-const daysInMonth = [];
-for (let i = 0; i < DateTime.local({zone: 'America/Bahia'}).daysInMonth; i++) {
-  daysInMonth.push(i+1);
-}
-
 export function SalesChart({ salesArray }){
   const [data, setData] = useState(null);
 
   useEffect(()=> {
-    const salesValueArray = daysInMonth.map(day => {
+    const acumulatedSalesArray = [];
+
+    const daysInMonth = [];
+    for (let i = 0; i < DateTime.local({zone: 'America/Bahia'}).daysInMonth; i++) {
+      daysInMonth.push(i+1);
+    }
+
+    daysInMonth.reduce((acumulated, day, index) => {
       const dayDateTime = DateTime.local({zone: 'America/Bahia'}).set({ day });
       const daySales = getDaySales(salesArray, dayDateTime.toISODate());
       const daySalesTotalValue = getSalesTotalValue(daySales);
-      return daySalesTotalValue;
-    });
+      const newAcumulated = acumulated + daySalesTotalValue;
+      return acumulatedSalesArray[index] = newAcumulated;
+    }, 0);
 
     const data = {
       labels: daysInMonth,
       datasets: [
         {
           label: 'Mês atual',
-          data: salesValueArray,
+          data: acumulatedSalesArray,
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
         }
@@ -63,6 +66,7 @@ export function SalesChart({ salesArray }){
     }
 
     setData(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
