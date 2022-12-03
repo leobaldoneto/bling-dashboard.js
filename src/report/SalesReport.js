@@ -1,5 +1,5 @@
 // const bling = require('../api/bling')
-import { bling } from '../api/bling';
+import { createBlingInstance } from '../services/bling';
 
 import { getDaySales } from './getDaySales';
 import { getMonthSales } from './getMonthSales';
@@ -11,7 +11,8 @@ import { getSellersFromSales } from './getSellersFromSales';
 import { GetDateString } from '../utils/GetDateString';
 import { getItemsCount } from './getItemsCount';
 
-export const getDashboardData = async () => {
+export const getDashboardData = async (apiKey) => {
+  const bling = createBlingInstance(apiKey);
   try {
     let salesObject = await bling.pedidos.getAll(
       `idSituacao[9];dataEmissao[${GetDateString(-30)} TO ${GetDateString()}]`,

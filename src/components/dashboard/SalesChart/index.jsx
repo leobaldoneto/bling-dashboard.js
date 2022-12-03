@@ -45,7 +45,7 @@ export function SalesChart({ salesArray }){
       daysInMonth.push(i+1);
     }
 
-    const meta = process.env.REACT_APP_META;
+    const meta = process.env.NEXT_PUBLIC_STORE_NAME;
     const salesPerDayToSucess = Math.floor(( meta / daysInMonth.length ));
 
     const averageMetaArray = [];
