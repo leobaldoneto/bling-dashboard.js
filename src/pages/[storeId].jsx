@@ -13,8 +13,7 @@ export async function getServerSideProps({query, res}) {
   const { storeId } = query;
   const storesArray = JSON.parse(readFileSync('./stores.json'));
   const storeData = storesArray[storeId];
-  const { apiKey } = storeData;
-  const dashboardData = await getDashboardData(apiKey);
+  const dashboardData = await getDashboardData(storeData.apiKey);
 
   res.setHeader(
     'Cache-Control',
