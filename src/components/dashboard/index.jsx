@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
-
-import { KPICards } from './KPICards';
-import { SellersTable } from './SellersTable';
-
-import { Divider, Skeleton, Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
 
 import Localization from '../../utils/Localization';
 
+import { KPICards } from './KPICards';
+import { SellersTable } from './SellersTable';
 import { SalesChart } from './SalesChart';
-
-
 
 export function Dashboard ({ store }) {
   return (
