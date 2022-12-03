@@ -11,9 +11,15 @@ export default function Home({ dashboardData }) {
 
 export async function getServerSideProps({query, res}) {
   const { storeId } = query;
-  const storesArray = JSON.parse(readFileSync('./stores.json'));
+  const data = await readFileSync('./stores.json');
+  const storesArray = await JSON.parse(data);
   const storeData = storesArray[storeId];
-  const dashboardData = await getDashboardData(storeData.apiKey);
+  let dashboardData = await getDashboardData(storeData.apiKey);
+  dashboardData = {
+    storeName: storeData.name,
+    storeMeta: storeData.meta,
+    ...dashboardData
+  }
 
   res.setHeader(
     'Cache-Control',
