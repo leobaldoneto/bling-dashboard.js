@@ -10,7 +10,7 @@ export function Dashboard ({ store }) {
   return (
     <>
       <div className="DashboardContainer">
-        <Typography variant="h3" color="initial" className="Title">🏢 {process.env.NEXT_PUBLIC_STORE_NAME}</Typography>
+        <Typography variant="h3" color="initial" className="Title">🏢 {store.storeName}</Typography>
 
         <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Dia</Typography>
         <div className="DataCards">
@@ -36,7 +36,7 @@ export function Dashboard ({ store }) {
         <SellersTable sellersArray={store.monthSellersArray}/>
 
         <Divider variant="middle" />
-        <SalesChart salesArray={store.monthSalesArray}/>
+        <SalesChart salesArray={store.monthSalesArray} meta={store.meta} />
       </div>
     </>
   )
