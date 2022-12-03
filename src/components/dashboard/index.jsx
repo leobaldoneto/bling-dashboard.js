@@ -36,7 +36,7 @@ export function Dashboard ({ store }) {
         <SellersTable sellersArray={store.monthSellersArray}/>
 
         <Divider variant="middle" />
-        <SalesChart salesArray={store.monthSalesArray} meta={store.meta} />
+        <SalesChart salesArray={store.monthSalesArray} meta={store.storeMeta} />
       </div>
     </>
   )
