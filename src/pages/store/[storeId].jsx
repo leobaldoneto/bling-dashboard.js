@@ -1,7 +1,7 @@
 import { readFileSync  } from 'fs';
 
-import { Dashboard } from '../components/dashboard';
-import { getDashboardData } from '../report/SalesReport';
+import { Dashboard } from '../../components/dashboard';
+import { getDashboardData } from '../../report/SalesReport';
 
 export default function Home({ dashboardData }) {
   return (
