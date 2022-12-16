@@ -38,42 +38,38 @@ export function SalesChart({ salesArray, meta }){
   const [data, setData] = useState(null);
 
   useEffect(()=> {
-    const acumulatedSalesArray = [];
+    const todayDateTime = DateTime.local({zone: 'America/Bahia'})
+    const todayDayInMonth = todayDateTime.day;
+    const daysInMonth = todayDateTime.daysInMonth;
+    const daysInMonthArray = Array.from(Array(daysInMonth), (_, key) => ++key);
 
-    const daysInMonth = [];
-    for (let i = 0; i < DateTime.local({zone: 'America/Bahia'}).daysInMonth; i++) {
-      daysInMonth.push(i+1);
+    const salesPerDayToGoal = Math.floor(( meta / daysInMonthArray.length ));
+
+    const accumulatedGoalPerDayInMonthArray = Array.from(Array(daysInMonth), (_, key) => salesPerDayToGoal * ++key);
+
+    const accumulatedSalesArray = [];
+    for (let day = 1, accumulatedSalesTotal = 0; day <= daysInMonth; day++) {
+      const salesDayDateTime = todayDateTime.set({ day });
+      const daySalesArray = getDaySales(salesArray, salesDayDateTime.toISODate());
+      const totalDaySalesValue = getSalesTotalValue(daySalesArray);
+
+      accumulatedSalesTotal += totalDaySalesValue;
+      accumulatedSalesArray[day-1] = accumulatedSalesTotal;
+
+      if (salesDayDateTime.day > todayDayInMonth) break;
     }
-
-    const salesPerDayToSucess = Math.floor(( meta / daysInMonth.length ));
-
-    const averageMetaArray = [];
-    let metaSum = 0;
-    daysInMonth.forEach(() => {
-      averageMetaArray.push( 
-      metaSum += salesPerDayToSucess
-      )});
-
-    daysInMonth.reduce((acumulated, day, index) => {
-      const dayDateTime = DateTime.local({zone: 'America/Bahia'}).set({ day });
-      const daySales = getDaySales(salesArray, dayDateTime.toISODate());
-      const daySalesTotalValue = getSalesTotalValue(daySales);
-      const newAcumulated = acumulated + daySalesTotalValue;
-      return acumulatedSalesArray[index] = newAcumulated;
-    }, 0);
-
     const data = {
-      labels: daysInMonth,
+      labels: daysInMonthArray,
       datasets: [
         {
           label: 'Mês atual',
-          data: acumulatedSalesArray,
+          data: accumulatedSalesArray,
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
         },
         {
           label: 'Meta',
-          data: averageMetaArray,
+          data: accumulatedGoalPerDayInMonthArray,
           borderColor: 'rgb(0, 102, 204)',
           backgroundColor: 'rgba(0, 204, 255, 0.5)',
         }
@@ -81,8 +77,7 @@ export function SalesChart({ salesArray, meta }){
     }
 
     setData(data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [salesArray, meta]);
 
 
   return (
