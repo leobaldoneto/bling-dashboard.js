@@ -72,6 +72,9 @@ export function SalesChart({ salesArray, meta }){
           data: accumulatedGoalPerDayInMonthArray,
           borderColor: 'rgb(0, 102, 204)',
           backgroundColor: 'rgba(0, 204, 255, 0.5)',
+          borderDash: [5, 5],
+          pointBorderWidth: 0,
+          pointBackgroundColor: '#0000'
         }
       ],
     }
