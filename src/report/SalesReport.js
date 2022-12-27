@@ -1,40 +1,34 @@
-// const bling = require('../api/bling')
-import { bling } from '../api/bling';
+import { DateTime } from 'luxon';
+
+import { createBlingInstance } from '../services/bling';
 
 import { getDaySales } from './getDaySales';
-import { getMonthSales } from './getMonthSales';
 import { getAverageTicket } from './getAverageTicket';
 import { getProductsPerSale } from './getProductsPerSale';
-import { countProducts } from './countProducts';
+
 import { getSalesTotalValue } from './getSalesTotalValue';
 import { getSellersFromSales } from './getSellersFromSales';
-import { GetDateString } from '../utils/GetDateString';
 import { getItemsCount } from './getItemsCount';
+import { querySales } from './querySales';
 
-export const getDashboardData = async () => {
+export const getDashboardData = async (apiKey) => {
+  const bling = createBlingInstance(apiKey);
   try {
-    let salesObject = await bling.pedidos.getAll(
-      `idSituacao[9];dataEmissao[${GetDateString(-30)} TO ${GetDateString()}]`,
-      1000
-    );
-    salesObject = salesObject.pedidos;
-    const salesArray = [];
-    for (let sale of salesObject) {
-      let pedido = sale.pedido;
-      if(pedido.totalvenda > 0){
-        salesArray.push(
-          {
-            date: pedido.data,
-            saleValue: parseFloat(pedido.totalvenda),
-            seller: pedido.vendedor,
-            productCount: countProducts(pedido)
-          }
-        )
-      }
+    const todayDateTime = DateTime.local({zone: 'America/Bahia'});
 
-    }
+    const monthSalesArray = await querySales(todayDateTime.startOf('month'), todayDateTime.endOf('month'), bling);
+
+    const lastMonthStartDayDateTime = todayDateTime.set({ month: todayDateTime.month -1 }).startOf('month');
+    const lastMonthEndDayDateTime = todayDateTime.set({ month: todayDateTime.month -1 }).endOf('month');
+    const lastMonthSalesArray = await querySales(lastMonthStartDayDateTime, lastMonthEndDayDateTime, bling);
+
+    const lastYearMonthStartDayDateTime = todayDateTime.set({ year: todayDateTime.year -1 }).startOf('month');
+    const lastYearMonthEndDayDateTime = todayDateTime.set({ year: todayDateTime.year -1 }).endOf('month');
+    const lastYearMonthSalesArray = await querySales(lastYearMonthStartDayDateTime, lastYearMonthEndDayDateTime, bling);
+
+
     // Day
-    const daySalesArray = getDaySales(salesArray);
+    const daySalesArray = getDaySales(monthSalesArray);
     const dayTotalSales = daySalesArray ? getSalesTotalValue(daySalesArray) : 0;
     const daySalesCount = daySalesArray ? daySalesArray.length : 0;
     const dayAverageSales = daySalesArray ? getAverageTicket(daySalesArray) : 0;
@@ -42,7 +36,7 @@ export const getDashboardData = async () => {
     const dayProductsPerSale = daySalesArray ? getProductsPerSale(daySalesArray) : 0;
 
     // Month
-    const monthSalesArray = getMonthSales(salesArray);
+    // const monthSalesArray = getMonthSales(monthSalesArray);
     const monthTotalSales = monthSalesArray ? getSalesTotalValue(monthSalesArray) : 0;
     const monthSalesCount = monthSalesArray ? monthSalesArray.length : 0;
     const monthAverageSales = monthSalesArray ? getAverageTicket(monthSalesArray) : 0;
@@ -85,6 +79,9 @@ export const getDashboardData = async () => {
       monthAverageSales,
       monthItemsCount,
       monthProductsPerSale,
+
+      lastMonthSalesArray,
+      lastYearMonthSalesArray,
 
       daySellersArray,
       monthSellersArray,

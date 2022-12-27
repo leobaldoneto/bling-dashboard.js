@@ -1,0 +1,12 @@
+{
+  "store1": {
+    "name": "Loja 1",
+    "meta": 140000,
+    "apiKey": "apikey"
+  },
+  "store2": {
+    "name": "Loja 2",
+    "meta": 145000,
+    "apiKey": "apikey"
+  }
+}
