@@ -14,7 +14,7 @@ export function Dashboard ({ store }) {
 
         <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Dia</Typography>
         <div className="DataCards">
-          <KPICards KPIName="Fat." KPIData={Localization(store.dayTotalSales)} toolTipText="Total em vendas." />
+          <KPICards KPIName="Fat." KPIData={Localization(store.dayTotalSales ?? 0)} toolTipText="Total em vendas." />
           <KPICards KPIName="Vendas" KPIData={store.daySalesCount} toolTipText="Número de vendas." />
           <KPICards KPIName="TM" KPIData={Localization(store.dayAverageSales)} toolTipText="Ticket médio." />
           <KPICards KPIName="Peças" KPIData={store.dayItemsCount} toolTipText="Peças vendidas." />
