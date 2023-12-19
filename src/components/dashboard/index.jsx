@@ -7,10 +7,12 @@ import { SellersTable } from './SellersTable';
 import { SalesChart } from './SalesChart';
 
 export function Dashboard ({ store }) {
+  const loadTime = new Date().toLocaleString();
   return (
     <>
       <div className="DashboardContainer">
-        <Typography variant="h3" color="initial" className="Title">🏢 {store.storeName}</Typography>
+        <Typography variant="h3" color="initial" className="Title">🏢 {store.storeName} 🎄</Typography>
+        <Typography variant="subtitle1" className="UpdateTime" sx={{textAlign: 'center'}}>🔄️ {loadTime}</Typography>
 
         <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Dia</Typography>
         <div className="DataCards">
