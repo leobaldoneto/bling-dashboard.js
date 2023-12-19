@@ -34,7 +34,7 @@ const options = {
   },
 };
 
-export function SalesChart({ monthSalesArray, lastMonthSalesArray, lastYearMonthSalesArray, meta }){
+export function SalesChart({ monthSalesArray, lastMonthSalesArray, lastYearMonthSalesArray, goal }){
   const [data, setData] = useState(null);
 
   useEffect(()=> {
@@ -42,7 +42,7 @@ export function SalesChart({ monthSalesArray, lastMonthSalesArray, lastYearMonth
     const daysInMonth = todayDateTime.daysInMonth;
     const daysInMonthArray = Array.from(Array(daysInMonth), (_, key) => ++key);
 
-    const salesPerDayToGoal = Math.floor(( meta / daysInMonthArray.length ));
+    const salesPerDayToGoal = Math.floor(( goal / daysInMonthArray.length ));
 
     const accumulatedGoalPerDayInMonthArray = Array.from(Array(daysInMonth), (_, key) => salesPerDayToGoal * ++key);
 
@@ -89,7 +89,7 @@ export function SalesChart({ monthSalesArray, lastMonthSalesArray, lastYearMonth
     }
 
     setData(data);
-  }, [monthSalesArray, meta]);
+  }, [monthSalesArray, goal]);
 
 
   return (

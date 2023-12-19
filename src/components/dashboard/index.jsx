@@ -42,7 +42,7 @@ export function Dashboard ({ store }) {
           monthSalesArray={store.monthSalesArray} 
           lastMonthSalesArray={store.lastMonthSalesArray} 
           lastYearMonthSalesArray={store.lastYearMonthSalesArray}
-          meta={store.storeMeta} />
+          goal={store.storeMeta} />
       </div>
     </>
   )
