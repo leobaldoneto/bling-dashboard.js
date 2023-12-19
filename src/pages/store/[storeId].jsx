@@ -1,4 +1,5 @@
 import { readFileSync  } from 'fs';
+import Snowfall from 'react-snowfall'
 
 import { Dashboard } from '../../components/dashboard';
 import { getDashboardData } from '../../report/SalesReport';
@@ -8,7 +9,10 @@ let cacheExpiry = 300 * 1000; // 5 minutes
 
 export default function Home({ dashboardData }) {
   return (
-    <Dashboard store={dashboardData} />
+    <>
+      <Snowfall />
+      <Dashboard store={dashboardData} />
+    </>
   ) 
 }
 
