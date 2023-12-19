@@ -23,7 +23,7 @@ export const getMonthAccumulatedValues = (monthSalesArray) => {
     if (
       salesDayDateTime.year === todayDateTime.year &&
       salesDayDateTime.month === todayDateTime.month && 
-      salesDayDateTime.day > todayDateTime.day ) {
+      salesDayDateTime.day >= todayDateTime.day ) {
         break;
       }
   }
