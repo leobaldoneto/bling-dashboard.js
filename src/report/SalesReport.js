@@ -49,6 +49,7 @@ export const getDashboardData = async (apiKey) => {
 
     daySellersArray.forEach(seller => {
       seller.totalSales = getSalesTotalValue(seller.sales);
+      seller.salesCount = seller.sales.length;
       seller.averageSales = getAverageTicket(seller.sales);
       seller.itemsCount = getItemsCount(seller.sales);
       seller.productsPerSale = getProductsPerSale(seller.sales);
