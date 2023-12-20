@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { DateTime } from 'luxon';
@@ -21,7 +22,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  annotationPlugin,
 );
 
 const options = {
@@ -31,6 +33,23 @@ const options = {
       display: true,
       text: 'Vendas por Dia',
     },
+    annotation: {
+      annotations: {
+        line1: {
+          type: 'line',
+          yMin: 15000,
+          yMax: 15000,
+          borderColor: 'rgb(0, 102, 204)',
+          borderWidth: 2,
+          borderDash: [2, 5],
+          label: {
+            content: 'meta do mês',
+            enabled: true,
+            position: 'start',
+          }
+        }
+      }
+    }
   },
 };
 
@@ -41,11 +60,7 @@ export function SalesChart({ monthSalesArray, lastMonthSalesArray, lastYearMonth
     const todayDateTime = DateTime.local({zone: 'America/Bahia'});
     const daysInMonth = todayDateTime.daysInMonth;
     const daysInMonthArray = Array.from(Array(daysInMonth), (_, key) => ++key);
-
-    const salesPerDayToGoal = Math.floor(( goal / daysInMonthArray.length ));
-
-    const accumulatedGoalPerDayInMonthArray = Array.from(Array(daysInMonth), (_, key) => salesPerDayToGoal * ++key);
-
+    
     const monthAccumulatedSalesArray = getMonthAccumulatedValues(monthSalesArray);
     const lastMonthAccumulatedSalesArray = getMonthAccumulatedValues(lastMonthSalesArray);
     const lastYearMonthAccumulatedSalesArray = getMonthAccumulatedValues(lastYearMonthSalesArray);
@@ -61,6 +76,15 @@ export function SalesChart({ monthSalesArray, lastMonthSalesArray, lastYearMonth
       const dayGoal = monthAccumulatedSalesArray[yesterday - 1] + remainingSalesPerDayToGoal * (day - yesterday);
       return dayGoal;
     });
+
+    options.plugins.annotation.annotations.line1.yMin = goal;
+    options.plugins.annotation.annotations.line1.yMax = goal;
+    options.scales = {
+      y: {
+        suggestedMax: goal * 1.1,
+      }
+    };
+
     const data = {
       labels: daysInMonthArray,
       datasets: [
