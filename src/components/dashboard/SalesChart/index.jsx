@@ -49,6 +49,18 @@ export function SalesChart({ monthSalesArray, lastMonthSalesArray, lastYearMonth
     const monthAccumulatedSalesArray = getMonthAccumulatedValues(monthSalesArray);
     const lastMonthAccumulatedSalesArray = getMonthAccumulatedValues(lastMonthSalesArray);
     const lastYearMonthAccumulatedSalesArray = getMonthAccumulatedValues(lastYearMonthSalesArray);
+
+    const yesterday = todayDateTime.day - 1;
+    const today = todayDateTime.day;
+    const remainingDays = daysInMonth - yesterday;
+    const remainingGoal = goal - monthAccumulatedSalesArray[yesterday - 1];
+    const remainingSalesPerDayToGoal = Math.floor(( remainingGoal / remainingDays ));
+
+    const remainingGoalPerDayInMonthArray = daysInMonthArray.map((day) => {
+      if(day < today) return NaN;
+      const dayGoal = monthAccumulatedSalesArray[yesterday - 1] + remainingSalesPerDayToGoal * (day - yesterday);
+      return dayGoal;
+    });
     const data = {
       labels: daysInMonthArray,
       datasets: [
@@ -60,7 +72,7 @@ export function SalesChart({ monthSalesArray, lastMonthSalesArray, lastYearMonth
         },
         {
           label: 'Meta',
-          data: accumulatedGoalPerDayInMonthArray,
+          data: remainingGoalPerDayInMonthArray,
           borderColor: 'rgb(0, 102, 204)',
           backgroundColor: 'rgba(0, 204, 255, 0.5)',
           borderDash: [5, 5],
