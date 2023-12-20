@@ -1,4 +1,6 @@
 import { Divider, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { DateTime } from 'luxon';
 
 import Localization from '../../utils/Localization';
 
@@ -7,12 +9,22 @@ import { SellersTable } from './SellersTable';
 import { SalesChart } from './SalesChart';
 
 export function Dashboard ({ store }) {
-  const loadTime = new Date().toLocaleString();
+  const [relativeTimeString, setRelativeTimeString] = useState('agora');
+  const loadTime = DateTime.local({zone: 'America/Bahia'});
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const relativeTimeString = loadTime.toRelative({locale: 'pt-br', });
+      setRelativeTimeString(relativeTimeString);
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <>
       <div className="DashboardContainer">
         <Typography variant="h3" color="initial" className="Title">🏢 {store.storeName} 🎄</Typography>
-        <Typography variant="subtitle1" className="UpdateTime" sx={{textAlign: 'center'}}>🔄️ {loadTime}</Typography>
+        <Typography variant="subtitle1" className="UpdateTime" sx={{textAlign: 'center'}}>🔄️ {relativeTimeString}</Typography>
 
         <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Dia</Typography>
         <div className="DataCards">
