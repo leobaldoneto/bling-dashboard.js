@@ -26,8 +26,8 @@ ChartJS.register(
 
 const options = {
   responsive: true,
-  Plugins: {
-    tittle: {
+  plugins: {
+    title: {
       display: true,
       text: 'Vendas por Dia',
     },
