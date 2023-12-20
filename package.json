@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Um simples dashboard para acompanhar KPIs da sua empresa no Bling ERP.",
   "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
