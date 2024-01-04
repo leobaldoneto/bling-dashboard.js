@@ -4,7 +4,7 @@
   "description": "Um simples dashboard para acompanhar KPIs da sua empresa no Bling ERP.",
   "main": "index.js",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "next dev",
