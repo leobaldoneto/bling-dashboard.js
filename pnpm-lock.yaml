@@ -21,8 +21,8 @@ importers:
         specifier: ^5.8.1
         version: 5.16.7(@emotion/react@11.13.3(@types/react@18.3.4)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.4)(react@18.3.1))(@types/react@18.3.4)(react@18.3.1))(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       bling-erp.js:
-        specifier: ^0.3.2
-        version: 0.3.2
+        specifier: ^0.4.1
+        version: 0.4.1
       chart.js:
         specifier: ^4.4.1
         version: 4.4.4
@@ -375,8 +375,8 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
 
-  bling-erp.js@0.3.2:
-    resolution: {integrity: sha512-jkJ0f1u9p9Z/GMH1Gn44CpNb4k1ULk+JYQhJLTQyuAUeuKNkf3UGlyBlToDfESdGG5qYWXr8rVttFIEv+iIMgg==}
+  bling-erp.js@0.4.1:
+    resolution: {integrity: sha512-DoB5G00Ps7SkIJPLhocsMcLup8XXZsRBsVakKmy7awO9Ln6pWsXhoXIP8V4U1Tl07WGWA9vaM/aKqVlaQ+BgRQ==}
 
   busboy@1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
@@ -1056,7 +1056,7 @@ snapshots:
       cosmiconfig: 7.1.0
       resolve: 1.22.8
 
-  bling-erp.js@0.3.2:
+  bling-erp.js@0.4.1:
     dependencies:
       axios: 1.7.5
       xmlbuilder2: 2.4.1
