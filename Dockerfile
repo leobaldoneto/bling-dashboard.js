@@ -5,7 +5,10 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY . .
 
-RUN npm ci
+# Install pnpm
+RUN npm install -g pnpm
+
+RUN pnpm install
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
@@ -14,7 +17,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 # Example:
 # ARG NEXT_PUBLIC_EXAMPLE="value here"
 
-RUN npm run build
+RUN pnpm run build
 
 # Production image, copy all the files and run next
 FROM node:18-alpine AS runner
@@ -30,4 +33,4 @@ COPY --from=builder /app ./
 
 USER nextjs
 
-CMD ["npm", "run", "start"]
+CMD ["pnpm", "run", "start"]
