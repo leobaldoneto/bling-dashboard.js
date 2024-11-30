@@ -9,6 +9,7 @@ let cacheExpiry = 300 * 1000; // 5 minutes
 export default function Home({ dashboardData }) {
   return (
     <>
+      <Snowfall />
       <Dashboard store={dashboardData} />
     </>
   ) 

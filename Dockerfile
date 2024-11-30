@@ -31,6 +31,9 @@ RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app ./
 
+# Ensure pnpm is installed in the production image
+RUN npm install -g pnpm
+
 USER nextjs
 
 CMD ["pnpm", "run", "start"]

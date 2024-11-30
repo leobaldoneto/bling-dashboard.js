@@ -23,7 +23,7 @@ export function Dashboard ({ store }) {
   return (
     <>
       <div className="DashboardContainer">
-        <Typography variant="h3" color="initial" className="Title">🏢 {store.storeName}</Typography>
+        <Typography variant="h3" color="initial" className="Title">🏢 {store.storeName} 🎄</Typography>
         <Typography variant="subtitle1" className="UpdateTime" sx={{textAlign: 'center'}}>🔄️ {relativeTimeString}</Typography>
 
         <Typography variant="h5" className="SubTitle" sx={{marginTop: 2}}>📅Dia</Typography>
