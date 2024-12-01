@@ -1,34 +1,26 @@
 # fly.toml file generated for bling-dashboard on 2022-12-03T17:06:31-03:00
 
 app = "bling-dashboard"
-kill_signal = "SIGINT"
+primary_region = "gru"
 kill_timeout = 15
+swap_size_mb = 512
 
 [env]
 PORT = "8080"
 
-[[services]]
+[http_service]
 http_checks = []
+force_https = true
 internal_port = 8080
-processes = ["app"]
-protocol = "tcp"
 auto_start_machines = true
 auto_stop_machines = "suspend"
+min_machines_running = 0
 [services.concurrency]
 hard_limit = 25
 soft_limit = 20
 type = "connections"
 
-[[services.ports]]
-force_https = true
-handlers = ["http"]
-port = 80
-
-[[services.ports]]
-handlers = ["tls", "http"]
-port = 443
-
-[[services.tcp_checks]]
+[[http_service.checks]]
 grace_period = "5s"
 interval = "15s"
 restart_limit = 0
