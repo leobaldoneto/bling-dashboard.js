@@ -1,4 +1,5 @@
 import { readFileSync  } from 'fs';
+import Snowfall from 'react-snowfall'
 
 import { Dashboard } from '../../components/dashboard';
 import { getDashboardData } from '../../report/SalesReport';
