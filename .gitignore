@@ -1,5 +1,6 @@
 backstop_data
 backstop.json
+stores.js
 
 # credentials
 stores.json
