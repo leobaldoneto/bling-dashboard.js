@@ -1,5 +1,5 @@
-import { readFileSync  } from 'fs';
 import Snowfall from 'react-snowfall'
+import stores from '../../services/stores'
 
 import { Dashboard } from '../../components/dashboard';
 import { getDashboardData } from '../../report/SalesReport';
@@ -18,7 +18,7 @@ export default function Home({ dashboardData }) {
 
 export async function getServerSideProps({query}) {
   const { storeId } = query;
-  const data = await readFileSync('./stores.json');
+  const data = stores;
   const storesArray = await JSON.parse(data);
   const storeData = storesArray[storeId];
 
