@@ -8,6 +8,10 @@ export const querySales = async (startDate, endDate, bling) => {
     let salesObject = await bling.pedidos.getAll(filterString, 1000);
     salesObject = salesObject.pedidos;
 
+    if (!salesObject) {
+      return [];
+    }
+
     const salesArray = salesObject.map((sale) => {
       const pedido = sale.pedido;
       const formattedSale = {

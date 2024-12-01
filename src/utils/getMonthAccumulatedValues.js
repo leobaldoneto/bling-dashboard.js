@@ -5,6 +5,10 @@ import { getSalesTotalValue } from '../report/getSalesTotalValue';
 
 
 export const getMonthAccumulatedValues = (monthSalesArray) => {
+  if (!monthSalesArray || monthSalesArray.length === 0) {
+    return [];
+  }
+
   const todayDateTime = DateTime.local({zone: 'America/Bahia'});
   const monthDateTime = DateTime.fromISO(monthSalesArray[0].date, { zone: 'America/Bahia' });
   const daysInMonth = monthDateTime.daysInMonth;
