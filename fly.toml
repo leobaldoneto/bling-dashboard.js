@@ -5,13 +5,10 @@ primary_region = "gru"
 kill_timeout = 15
 swap_size_mb = 512
 
-[env]
-PORT = "8080"
-
 [http_service]
 http_checks = []
 force_https = true
-internal_port = 8080
+internal_port = 3000
 auto_start_machines = true
 auto_stop_machines = "suspend"
 min_machines_running = 0
@@ -23,5 +20,7 @@ type = "connections"
 [[http_service.checks]]
 grace_period = "5s"
 interval = "15s"
+method = "GET"
+path = "/api/health"
 restart_limit = 0
 timeout = "5s"
