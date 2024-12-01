@@ -18,8 +18,7 @@ export default function Home({ dashboardData }) {
 
 export async function getServerSideProps({query}) {
   const { storeId } = query;
-  const data = stores;
-  const storesArray = await JSON.parse(data);
+  const storesArray = stores;
   const storeData = storesArray[storeId];
 
   const timeSinceLastCache = cache[storeId] ? Date.now() - cache[storeId].timestamp : cacheExpiry;
