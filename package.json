@@ -30,7 +30,7 @@
     "@mui/icons-material": "^5.16.8",
     "@mui/material": "^5.16.8",
     "bling-erp.js": "^0.4.1",
-    "chart.js": "^4.4.6",
+    "chart.js": "^4.4.7",
     "chartjs-plugin-annotation": "^3.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
